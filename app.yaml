@@ -1,0 +1,15 @@
+runtime: python311
+entrypoint: uvicorn server:app --host 0.0.0.0 --port $PORT
+
+instance_class: F1
+
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 2
+
+env_variables:
+  DOCTOR_NAME: "Dr. A. J. Sakhrelia"
+  DOCTOR_PHONE: "+919099555744"
+  CLINIC_NAME: "Arogya Healthcare & Diagnostic Center"
+  CLINIC_LOCATION: "https://maps.google.com/?q=21.1702,72.8311 (Vesu Main Road, Surat, Gujarat)"
