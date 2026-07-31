@@ -59,7 +59,10 @@ class WhatsAppInboundPayload(BaseModel):
     message_text: str
 
 @app.get("/", response_class=HTMLResponse)
+@app.get("/api/index", response_class=HTMLResponse)
+@app.get("/api/index/", response_class=HTMLResponse)
 def home_dashboard():
+    """Serves the dashboard UI reliably across all Vercel serverless routes."""
     try:
         html_path = os.path.join(TEMPLATES_DIR, "index.html")
         with open(html_path, "r", encoding="utf-8") as f:
@@ -153,14 +156,8 @@ def notify_doctor_daily():
     except Exception as e:
         return JSONResponse(content={"status": "ERROR", "message": str(e)}, status_code=400)
 
-# --- Interactive WhatsApp Chatbot Endpoints ---
-
 @app.post("/api/whatsapp/inbound")
 def handle_whatsapp_inbound(payload: WhatsAppInboundPayload):
-    """
-    Inbound WhatsApp Chatbot Webhook.
-    Receives incoming text from users on WhatsApp, processes it via Gujarati AI Chatbot, and returns reply!
-    """
     try:
         reply = whatsapp_chatbot.process_incoming_message(
             sender_phone=payload.sender_phone,
@@ -169,9 +166,7 @@ def handle_whatsapp_inbound(payload: WhatsAppInboundPayload):
         return {"status": "SUCCESS", "reply_text": reply}
     except Exception as e:
         logger.error(f"WhatsApp chatbot error: {e}")
-        return {"status": "ERROR", "reply_text": "માફ કરશો, પ્રોસેસિંગમાં ભૂલ થઈ. 'Hi' ટાઈપ કરશો."}
-
-# --- Voice Agent Telephony & Simulator API Endpoints ---
+        return {"status": "ERROR", "reply_text": "માફ કરશો, પ્રોસેસિંગમાં ભૂલ થઈ."}
 
 @app.post("/api/voice/inbound")
 async def handle_inbound_call_webhook(request: Request):
