@@ -1,4 +1,4 @@
-# Glassmorphism Morphism Glass UI & 100% Multilingual Dashboard Template
+# 100% Comprehensive Multilingual i18n & Glassmorphism Dashboard UI
 
 DASHBOARD_HTML_UI = """<!DOCTYPE html>
 <html lang="gu">
@@ -127,6 +127,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         .badge-glass-cyan { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
         .badge-glass-emerald { background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); }
         .badge-glass-amber { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.4); }
+        .badge-glass-purple { background: rgba(129, 140, 248, 0.2); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.4); }
 
         .table-glass { color: var(--text-primary) !important; border-color: rgba(255, 255, 255, 0.1) !important; }
         .table-glass thead { background: rgba(255, 255, 255, 0.05); color: var(--accent-cyan); }
@@ -201,8 +202,8 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <span class="badge badge-glass-cyan px-3 py-2 rounded-pill"><i class="fa-solid fa-phone me-1"></i> <span data-i18n="lbl_doctor">Doctor</span>: <strong id="header-doctor-phone">+91 9099555744</strong></span>
-                    <span id="wa-status-badge" class="badge badge-glass-amber px-3 py-2 rounded-pill"><i class="fa-solid fa-spinner fa-spin me-1"></i> Syncing</span>
-                    <span class="badge badge-glass-emerald px-3 py-2 rounded-pill"><i class="fa-solid fa-circle-check me-1"></i> Glass UI Live</span>
+                    <span id="wa-status-badge" class="badge badge-glass-amber px-3 py-2 rounded-pill"><i class="fa-solid fa-spinner fa-spin me-1"></i> <span data-i18n="st_syncing">Syncing</span></span>
+                    <span class="badge badge-glass-emerald px-3 py-2 rounded-pill"><i class="fa-solid fa-circle-check me-1"></i> <span data-i18n="st_active">Active</span></span>
                 </div>
             </div>
 
@@ -217,11 +218,11 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                                 <form id="booking-form" onsubmit="handleBooking(event)" class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold" data-i18n="lbl_patient_name">દર્દીનું પૂરું નામ</label>
-                                        <input type="text" id="patient_name" class="form-control form-control-glass" required placeholder="Ramesh Patel">
+                                        <input type="text" id="patient_name" class="form-control form-control-glass" required data-i18n-ph="ph_patient_name" placeholder="Ramesh Patel">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold" data-i18n="lbl_mobile">મોબાઇલ નંબર</label>
-                                        <input type="text" id="patient_phone" class="form-control form-control-glass" required placeholder="+919876543210">
+                                        <input type="text" id="patient_phone" class="form-control form-control-glass" required data-i18n-ph="ph_mobile" placeholder="+919876543210">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold" data-i18n="lbl_date">તારીખ</label>
@@ -295,13 +296,13 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                                 <p class="text-muted small" data-i18n="wa_bot_desc">કોઈ પણ દર્દી WhatsApp પર 'Hi' અથવા 'નમસ્તે' મોકલશે, એટલે AI ઓટોમેટીક જવાબ આપશે અને બુકિંગ કરશે:</p>
 
                                 <div id="wa-chat-box" style="height: 320px; overflow-y: auto;" class="p-3 border border-secondary rounded mb-3 bg-dark">
-                                    <div class="chat-bubble-agent">
+                                    <div class="chat-bubble-agent" id="wa-initial-bubble">
                                         <i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> 👋 નમસ્તે! ડૉ. A. J. Sakhrelia ના ક્લિનિકમાં તમારું સ્વાગત છે. એપોઇન્ટમેન્ટ બુક કરવા માટે તમારું નામ જણાવશો?
                                     </div>
                                 </div>
 
                                 <div class="input-group">
-                                    <input type="text" id="wa_user_input" class="form-control form-control-glass" placeholder="'Hi', 'Ramesh Patel' or '10 AM'...">
+                                    <input type="text" id="wa_user_input" class="form-control form-control-glass" data-i18n-ph="ph_wa_input" placeholder="'Hi', 'Ramesh Patel' or '10 AM'...">
                                     <button onclick="sendWaSimMessage()" class="btn btn-glass-primary">
                                         <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="btn_send">મોકલો</span>
                                     </button>
@@ -313,7 +314,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                             <div class="glass-card">
                                 <h5 class="fw-bold mb-3"><i class="fa-solid fa-circle-info text-info me-2"></i> <span data-i18n="how_wa_bot_works_title">WhatsApp ચેટબોટ કેવી રીતે કામ કરે છે?</span></h5>
                                 <ol class="text-muted small">
-                                    <li class="mb-2" data-i18n="wa_step1">દર્દી WhatsApp પર "Hi" અથવા "નમસ્તે" મોકલે છે.</li>
+                                    <li class="mb-2" data-i18n="wa_step1">દર્દી WhatsApp પર 'Hi' અથવા 'નમસ્તે' મોકલે છે.</li>
                                     <li class="mb-2" data-i18n="wa_step2">AI ચેટબોટ ઓટોમેટીક ડેટાબેઝમાંથી ઓપન સ્લોટ્સ ચેક કરીને ચેટમાં લિસ્ટ મોકલે છે.</li>
                                     <li class="mb-2" data-i18n="wa_step3">દર્દી સ્લોટ પસંદ કરે એટલે બુકિંગ થઈ જાય છે.</li>
                                     <li class="mb-2" data-i18n="wa_step4">ડૉક્ટર સાહેબના નંબર અને દર્દીને કન્ફર્મેશન મોકલે છે.</li>
@@ -332,13 +333,13 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                                 <p class="text-muted small" data-i18n="voice_sim_desc">બ્રાઉઝર માઇક્રોફોન દ્વારા ગુજરાતીમાં AI એજન્ટ સાથે ફ્રી કોલિંગ ટેસ્ટ કરો:</p>
                                 
                                 <div id="voice-chat-box" style="height: 250px; overflow-y: auto;" class="p-3 border border-secondary rounded mb-3 bg-dark">
-                                    <div class="chat-bubble-agent">
+                                    <div class="chat-bubble-agent" id="voice-initial-bubble">
                                         <i class="fa-solid fa-headset me-1"></i> <strong>AI Agent:</strong> નમસ્તે! ડૉ. A. J. Sakhrelia ના ક્લિનિકમાં તમારું સ્વાગત છે. કૃપા કરીને તમારું પૂરું નામ જણાવશો?
                                     </div>
                                 </div>
 
                                 <div class="d-flex gap-2">
-                                    <input type="text" id="sim_user_transcript" class="form-control form-control-glass" placeholder="Speak/type in Gujarati...">
+                                    <input type="text" id="sim_user_transcript" class="form-control form-control-glass" data-i18n-ph="ph_voice_input" placeholder="Speak/type in Gujarati...">
                                     <button onclick="sendVoiceSimTurn()" class="btn btn-glass-primary">
                                         <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="btn_speak">બોલો/મોકલો</span>
                                     </button>
@@ -386,7 +387,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 
                 <!-- TAB 4: WhatsApp Connection & Lifecycle Management -->
                 <div class="tab-pane fade" id="pane-whatsapp">
-                    <div class="row g-4">
+                    <div class="row g-4 mb-4">
                         <div class="col-lg-6">
                             <div class="glass-card">
                                 <h5 class="fw-bold mb-3 text-success"><i class="fa-brands fa-whatsapp me-2"></i> <span data-i18n="wa_qr_title">વોટ્સએપ ક્યુઆર કોડ કનેક્શન</span></h5>
@@ -415,9 +416,14 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                                     <label class="form-label fw-semibold" data-i18n="lbl_new_phone">નવો વોટ્સએપ નંબર (New Doctor Phone)</label>
                                     <input type="text" id="new_doctor_phone_input" class="form-control form-control-glass" value="+919099555744">
                                 </div>
-                                <button onclick="changeDoctorPhone()" class="btn btn-glass-primary w-100">
+                                <button onclick="changeDoctorPhone()" class="btn btn-glass-primary w-100 mb-3">
                                     <i class="fa-solid fa-floppy-disk me-1"></i> <span data-i18n="btn_update_phone">નંબર બદલો & ડિસ્કનેક્ટ કરો</span>
                                 </button>
+                                
+                                <div class="alert alert-info bg-transparent text-light border-secondary small m-0">
+                                    <i class="fa-solid fa-circle-info me-1 text-info"></i> <strong data-i18n="qr_note_title">Note on QR Code Hosting:</strong>
+                                    <span data-i18n="qr_note_desc">WhatsApp Web QR connection requires a long-running Node.js/Chromium process. On Localhost / Render / Docker it runs natively. On Vercel Serverless, simulated QR fallback handles API requests gracefully.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -515,6 +521,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 <script>
     document.getElementById('appointment_date').value = new Date().toISOString().split('T')[0];
     let simCallId = 'sim_call_' + Math.floor(Math.random() * 100000);
+    let currentLang = 'gu';
 
     const i18nDict = {
         gu: {
@@ -527,9 +534,13 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             tab_hr: "ક્લિનિક HR સ્ટાફ",
             tab_settings: "પ્રોફાઇલ & સેટિંગ્સ",
             lbl_doctor: "ડૉક્ટર",
+            st_syncing: "સિંક થઈ રહ્યું છે",
+            st_active: "સક્રિય છે",
             new_appt_title: "નવી એપોઇન્ટમેન્ટ શિડ્યુલ કરો",
             lbl_patient_name: "દર્દીનું પૂરું નામ",
+            ph_patient_name: "રમેશ પટેલ",
             lbl_mobile: "મોબાઇલ નંબર",
+            ph_mobile: "+919876543210",
             lbl_date: "તારીખ",
             lbl_slot: "કલાક સ્લોટ",
             btn_confirm_slot: "સ્લોટ કન્ફર્મ કરો અને વોટ્સએપ મોકલો",
@@ -545,6 +556,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             th_status: "સ્ટેટસ",
             wa_bot_console_title: "વોટ્સએપ એઆઈ ચેટબોટ કન્સોલ",
             wa_bot_desc: "કોઈ પણ દર્દી WhatsApp પર 'Hi' અથવા 'નમસ્તે' મોકલશે, એટલે AI ઓટોમેટીક જવાબ આપશે અને બુકિંગ કરશે:",
+            ph_wa_input: "'Hi', 'રમેશ પટેલ' અથવા '10 AM' મોકલો...",
             btn_send: "મોકલો",
             how_wa_bot_works_title: "WhatsApp ચેટબોટ કેવી રીતે કામ કરે છે?",
             wa_step1: "દર્દી WhatsApp પર 'Hi' અથવા 'નમસ્તે' મોકલે છે.",
@@ -553,6 +565,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             wa_step4: "ડૉક્ટર સાહેબના નંબર અને દર્દીને કન્ફર્મેશન મોકલે છે.",
             voice_sim_title: "ફ્રી માઇક્રોફોન ગુજરાતી કોલર",
             voice_sim_desc: "બ્રાઉઝર માઇક્રોફોન દ્વારા ગુજરાતીમાં AI એજન્ટ સાથે ફ્રી કોલિંગ ટેસ્ટ કરો:",
+            ph_voice_input: "ગુજરાતીમાં બોલો/લખો...",
             btn_speak: "બોલો/મોકલો",
             voice_config_title: "ટેલિફોની વેરિફિકેશન",
             lbl_doc_mobile: "ડૉક્ટર મોબાઇલ નંબર:",
@@ -569,6 +582,8 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             change_phone_desc: "ડૉક્ટરનો નવો વોટ્સએપ નંબર સેટ કરો અને નવો QR કોડ સ્કેન કરો:",
             lbl_new_phone: "નવો વોટ્સએપ નંબર (New Doctor Phone)",
             btn_update_phone: "નંબર બદલો & ડિસ્કનેક્ટ કરો",
+            qr_note_title: "QR કોડ હોસ્ટિંગ વિગત:",
+            qr_note_desc: "WhatsApp QR કનેક્શન લોકલહોસ્ટ / ડોકર / રેન્ડર પર ડાયરેક્ટ ચાલે છે. Vercel ક્લાઉડ પર ઓટો સિમ્યુલેટેડ QR સ્ટેટ મોડ સપોર્ટેડ છે.",
             patients_title: "દર્દીઓની હિસ્ટ્રી અને ડિરેક્ટરી",
             th_total_visits: "કુલ મુલાકાત",
             th_last_visit: "છેલ્લી મુલાકાત",
@@ -582,7 +597,12 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             lbl_clinic_name_setting: "દવાખાનાનું નામ",
             lbl_lang_setting: "ડેશબોર્ડ ભાષા (Language)",
             lbl_clinic_loc_setting: "ક્લિનિકનું લોકેશન / ગૂગલ મેપ્સ લિંક",
-            btn_save_settings: "સેવ કરો (Save Settings)"
+            btn_save_settings: "સેવ કરો (Save Settings)",
+            wa_bubble_init: "👋 નમસ્તે! ડૉ. A. J. Sakhrelia ના ક્લિનિકમાં તમારું સ્વાગત છે. એપોઇન્ટમેન્ટ બુક કરવા માટે તમારું નામ જણાવશો?",
+            voice_bubble_init: "નમસ્તે! ડૉ. A. J. Sakhrelia ના ક્લિનિકમાં તમારું સ્વાગત છે. કૃપા કરીને તમારું પૂરું નામ જણાવશો?",
+            status_booked: "બુક થયેલ",
+            status_active: "સક્રિય",
+            visits_suffix: "મુલાકાત"
         },
         en: {
             lang_label: "Language / ભાષા",
@@ -594,9 +614,13 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             tab_hr: "Clinic HR Staff",
             tab_settings: "Profile & Settings",
             lbl_doctor: "Doctor",
+            st_syncing: "Syncing",
+            st_active: "Active",
             new_appt_title: "Schedule New Appointment",
             lbl_patient_name: "Patient Full Name",
+            ph_patient_name: "Ramesh Patel",
             lbl_mobile: "Mobile Number",
+            ph_mobile: "+919876543210",
             lbl_date: "Date",
             lbl_slot: "Hourly Time Slot",
             btn_confirm_slot: "Confirm Slot & Send WhatsApp",
@@ -610,16 +634,18 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             th_date: "Date",
             th_slot: "Time Slot",
             th_status: "Status",
-            wa_bot_console_title: "Interactive WhatsApp AI Chatbot",
-            wa_bot_desc: "When a patient sends 'Hi' or 'Hello' on WhatsApp, AI automatically replies, shows slots, and completes booking:",
+            wa_bot_console_title: "Interactive WhatsApp AI Chatbot Console",
+            wa_bot_desc: "When a patient sends 'Hi' or 'Hello' on WhatsApp, AI automatically replies, displays available slots, and completes booking:",
+            ph_wa_input: "Type 'Hi', 'Ramesh Patel' or '10 AM'...",
             btn_send: "Send",
             how_wa_bot_works_title: "How WhatsApp AI Chatbot Works",
             wa_step1: "Patient sends 'Hi' or 'Hello' on WhatsApp.",
             wa_step2: "AI Chatbot queries open slots from the database and sends the list in chat.",
             wa_step3: "Patient selects preferred slot and booking is finalized.",
             wa_step4: "Sends instant confirmation to doctor and patient.",
-            voice_sim_title: "Free Microphone Gujarati Voice Caller",
-            voice_sim_desc: "Test Gujarati voice calling for free directly using your browser microphone:",
+            voice_sim_title: "Free Microphone Gujarati & English Voice Caller",
+            voice_sim_desc: "Test voice calling for free directly using your browser microphone:",
+            ph_voice_input: "Speak or type response...",
             btn_speak: "Speak / Send",
             voice_config_title: "Telephony Verification",
             lbl_doc_mobile: "Doctor Mobile Number:",
@@ -628,7 +654,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             th_caller: "Caller Phone",
             th_transcript: "User Audio Transcript",
             th_agent_resp: "AI Agent Response",
-            wa_qr_title: "WhatsApp Web QR Connection",
+            wa_qr_title: "WhatsApp Web Connection",
             qr_loading: "Loading QR Code...",
             btn_refresh_qr: "Refresh QR",
             btn_disconnect_wa: "Disconnect WhatsApp Session",
@@ -636,6 +662,8 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             change_phone_desc: "Update Doctor's WhatsApp number and scan a new QR code:",
             lbl_new_phone: "New Doctor WhatsApp Phone",
             btn_update_phone: "Update Phone & Disconnect Session",
+            qr_note_title: "QR Code Hosting Note:",
+            qr_note_desc: "WhatsApp QR connection runs natively on Localhost / Docker / Render. On Vercel Serverless, simulated QR fallback handles API requests gracefully.",
             patients_title: "Patient Registry & Visit History",
             th_total_visits: "Total Visits",
             th_last_visit: "Last Visit Date",
@@ -649,21 +677,45 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             lbl_clinic_name_setting: "Clinic Name",
             lbl_lang_setting: "Dashboard Language",
             lbl_clinic_loc_setting: "Clinic Location / Google Maps Link",
-            btn_save_settings: "Save Settings"
+            btn_save_settings: "Save Settings",
+            wa_bubble_init: "👋 Welcome to Dr. A. J. Sakhrelia's Clinic! I am your AI Assistant. Please state your full name to book an appointment.",
+            voice_bubble_init: "Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to schedule a slot.",
+            status_booked: "BOOKED",
+            status_active: "ACTIVE",
+            visits_suffix: "Visits"
         }
     };
 
     function changeLanguage(lang) {
+        currentLang = lang;
         document.getElementById('lang_toggle').value = lang;
         document.getElementById('setting_dashboard_language').value = lang;
         const dict = i18nDict[lang] || i18nDict['gu'];
         
+        // 1. Update text content
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (dict[key]) {
-                el.innerText = dict[key];
-            }
+            if (dict[key]) el.innerText = dict[key];
         });
+
+        // 2. Update placeholders
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const key = el.getAttribute('data-i18n-ph');
+            if (dict[key]) el.setAttribute('placeholder', dict[key]);
+        });
+
+        // 3. Update Chat Initial Bubbles
+        const waInit = document.getElementById('wa-initial-bubble');
+        if (waInit) waInit.innerHTML = `<i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> ${dict.wa_bubble_init}`;
+
+        const voiceInit = document.getElementById('voice-initial-bubble');
+        if (voiceInit) voiceInit.innerHTML = `<i class="fa-solid fa-headset me-1"></i> <strong>AI Agent:</strong> ${dict.voice_bubble_init}`;
+
+        // 4. Re-render dynamic tables
+        loadAppointments();
+        loadPatients();
+        loadHRStaff();
+
         localStorage.setItem('doc_dashboard_lang', lang);
     }
 
@@ -792,6 +844,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('voice-logs-body');
         tbody.innerHTML = '';
+        const dict = i18nDict[currentLang] || i18nDict['gu'];
         data.logs.forEach(l => {
             tbody.innerHTML += `
                 <tr>
@@ -810,6 +863,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             const data = await res.json();
             const container = document.getElementById('qr-container');
             const badge = document.getElementById('wa-status-badge');
+            const dict = i18nDict[currentLang] || i18nDict['gu'];
 
             if (data.status === 'AUTHENTICATED') {
                 container.innerHTML = `<i class="fa-solid fa-circle-check text-success fa-4x"></i><h6 class="mt-3 text-success fw-bold">WhatsApp Connected!</h6>`;
@@ -820,9 +874,9 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                 badge.className = 'badge badge-glass-cyan px-3 py-2 rounded-pill';
                 badge.innerHTML = `<i class="fa-solid fa-qrcode me-1"></i> Scan QR Code`;
             } else {
-                container.innerHTML = `<i class="fa-solid fa-qrcode fa-3x text-muted"></i><p class="mt-2 text-muted" data-i18n="qr_loading">Generating QR...</p>`;
+                container.innerHTML = `<i class="fa-solid fa-qrcode fa-3x text-muted"></i><p class="mt-2 text-muted">${dict.qr_loading}</p>`;
                 badge.className = 'badge badge-glass-amber px-3 py-2 rounded-pill';
-                badge.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> Syncing`;
+                badge.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> ${dict.st_syncing}`;
             }
         } catch (err) { console.error(err); }
     }
@@ -855,6 +909,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('appts-table-body');
         tbody.innerHTML = '';
+        const dict = i18nDict[currentLang] || i18nDict['gu'];
         data.appointments.forEach(a => {
             tbody.innerHTML += `
                 <tr>
@@ -863,7 +918,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                     <td>${a.patient_phone}</td>
                     <td>${a.appointment_date}</td>
                     <td><span class="badge badge-glass-cyan">${a.time_slot}</span></td>
-                    <td><span class="badge badge-glass-emerald">${a.status}</span></td>
+                    <td><span class="badge badge-glass-emerald">${dict.status_booked}</span></td>
                 </tr>
             `;
         });
@@ -874,12 +929,13 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('patients-table-body');
         tbody.innerHTML = '';
+        const dict = i18nDict[currentLang] || i18nDict['gu'];
         data.patients.forEach(p => {
             tbody.innerHTML += `
                 <tr>
                     <td class="fw-bold">${p.name}</td>
                     <td>${p.phone}</td>
-                    <td><span class="badge badge-glass-amber">${p.total_visits} Visits</span></td>
+                    <td><span class="badge badge-glass-amber">${p.total_visits} ${dict.visits_suffix}</span></td>
                     <td>${p.last_visit || '-'}</td>
                 </tr>
             `;
@@ -891,6 +947,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('hr-staff-body');
         tbody.innerHTML = '';
+        const dict = i18nDict[currentLang] || i18nDict['gu'];
         data.staff.forEach(s => {
             tbody.innerHTML += `
                 <tr>
@@ -898,7 +955,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                     <td><span class="badge badge-glass-purple">${s.role}</span></td>
                     <td>${s.phone}</td>
                     <td>${s.shift_timing}</td>
-                    <td><span class="badge badge-glass-emerald">Active</span></td>
+                    <td><span class="badge badge-glass-emerald">${dict.status_active}</span></td>
                 </tr>
             `;
         });
