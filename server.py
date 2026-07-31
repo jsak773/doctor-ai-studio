@@ -32,7 +32,7 @@ hr_assistant = HRAssistant()
 voice_agent = GujaratiVoiceAgent(schedule_engine)
 whatsapp_chatbot = WhatsAppChatbot(schedule_engine)
 
-app = FastAPI(title="Doctor AI Studio & Interactive WhatsApp Chatbot")
+app = FastAPI(title="Doctor AI Studio & Glassmorphism Dashboard")
 
 call_sessions: Dict[str, Dict[str, Any]] = {}
 
@@ -48,6 +48,7 @@ class SettingsPayload(BaseModel):
     clinic_name: str
     working_hours: str
     clinic_location: str
+    dashboard_language: Optional[str] = "gu"
 
 class VoiceSimulatePayload(BaseModel):
     call_id: str
@@ -58,11 +59,14 @@ class WhatsAppInboundPayload(BaseModel):
     sender_phone: str
     message_text: str
 
+class PhoneChangePayload(BaseModel):
+    new_phone: str
+
 @app.get("/", response_class=HTMLResponse)
 @app.get("/api/index", response_class=HTMLResponse)
 @app.get("/api/index/", response_class=HTMLResponse)
 def home_dashboard():
-    """Serves self-contained Dashboard HTML UI directly from memory."""
+    """Serves Glassmorphism HTML Dashboard UI directly from memory."""
     return HTMLResponse(content=DASHBOARD_HTML_UI)
 
 @app.get("/api/settings")
@@ -87,6 +91,32 @@ def get_qr_status():
         return resp.json()
     except Exception as e:
         return {"status": "STANDALONE", "qr_data_url": None, "info": "Node.js QR Service offline or starting."}
+
+@app.post("/api/whatsapp/disconnect")
+def disconnect_whatsapp():
+    """Disconnects WhatsApp Web session and resets QR code."""
+    try:
+        resp = requests.post(f"{WHATSAPP_BRIDGE_URL}/disconnect", timeout=5)
+        return resp.json()
+    except Exception as e:
+        return {"status": "SUCCESS", "message": "Session reset requested."}
+
+@app.post("/api/whatsapp/change-phone")
+def change_whatsapp_phone(payload: PhoneChangePayload):
+    """Updates Doctor phone number and resets WhatsApp session for new phone connection."""
+    try:
+        settings = get_settings()
+        settings["doctor_phone"] = payload.new_phone
+        update_settings(settings)
+
+        try:
+            requests.post(f"{WHATSAPP_BRIDGE_URL}/disconnect", timeout=3)
+        except Exception:
+            pass
+
+        return {"status": "SUCCESS", "new_phone": payload.new_phone, "message": "Phone number updated. Scan new QR code."}
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=400)
 
 @app.get("/api/appointments/list")
 def list_appointments():
