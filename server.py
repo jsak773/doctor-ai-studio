@@ -11,7 +11,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("DoctorAIStudio")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # Ensure DB initialized
 from database import init_db, get_settings, update_settings, DB_PATH
@@ -19,6 +18,7 @@ from schedule_engine import ScheduleEngine
 from hr_assistant import HRAssistant
 from voice_agent import GujaratiVoiceAgent
 from whatsapp_chatbot import WhatsAppChatbot
+from templates_data import DASHBOARD_HTML_UI
 
 try:
     init_db()
@@ -62,15 +62,8 @@ class WhatsAppInboundPayload(BaseModel):
 @app.get("/api/index", response_class=HTMLResponse)
 @app.get("/api/index/", response_class=HTMLResponse)
 def home_dashboard():
-    """Serves the dashboard UI reliably across all Vercel serverless routes."""
-    try:
-        html_path = os.path.join(TEMPLATES_DIR, "index.html")
-        with open(html_path, "r", encoding="utf-8") as f:
-            html_content = f.read()
-        return HTMLResponse(content=html_content)
-    except Exception as e:
-        logger.error(f"UI file loading error: {e}")
-        return HTMLResponse(content=f"<h2>Error loading dashboard UI: {e}</h2>", status_code=500)
+    """Serves self-contained Dashboard HTML UI directly from memory."""
+    return HTMLResponse(content=DASHBOARD_HTML_UI)
 
 @app.get("/api/settings")
 def read_settings():
