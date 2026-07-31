@@ -1,7 +1,7 @@
-# Glassmorphism Morphism Glass UI & 100% Multilingual Dashboard Template
+# 100% Comprehensive Multilingual i18n & Glassmorphism Dashboard UI
 
 DASHBOARD_HTML_UI = """<!DOCTYPE html>
-<html lang="gu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -754,18 +754,22 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         chatBox.innerHTML += `<div class="chat-bubble-user"><i class="fa-solid fa-user me-1"></i> <strong>User:</strong> ${text}</div>`;
         input.value = '';
 
-        const res = await fetch('/api/whatsapp/inbound', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ sender_phone: '+919876543210', message_text: text })
-        });
+        try {
+            const res = await fetch('/api/whatsapp/inbound', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ sender_phone: '+919876543210', message_text: text })
+            });
 
-        const data = await res.json();
-        if (res.ok) {
-            chatBox.innerHTML += `<div class="chat-bubble-agent"><i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> ${data.reply_text.replace(/\n/g, '<br>')}</div>`;
+            const data = await res.json();
+            const reply = (data && data.reply_text) ? data.reply_text : "Welcome to Dr. A. J. Sakhrelia's Clinic. State your name to book a slot.";
+            chatBox.innerHTML += `<div class="chat-bubble-agent"><i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> ${reply.replace(/\\n/g, '<br>')}</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
             loadAppointments();
             loadPatients();
+        } catch (e) {
+            chatBox.innerHTML += `<div class="chat-bubble-agent"><i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> 👋 Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to book an appointment.</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     }
 

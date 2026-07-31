@@ -1,8 +1,13 @@
 import sqlite3
 import os
+import tempfile
 from typing import Dict, Any, List
 
-DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "doctor_studio.db")
+# On Vercel/AWS Lambda, use /tmp (the only writable directory). On local, use script directory.
+if os.getenv("VERCEL") or os.getenv("AWS_LAMBDA_FUNCTION_NAME"):
+    DB_PATH = os.path.join(tempfile.gettempdir(), "doctor_studio.db")
+else:
+    DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "doctor_studio.db")
 
 def init_db():
     with sqlite3.connect(DB_PATH) as conn:
@@ -23,7 +28,7 @@ def init_db():
             "clinic_name": "Arogya Healthcare & Diagnostic Center",
             "clinic_location": "https://maps.google.com/?q=21.1702,72.8311 (Vesu Main Road, Surat, Gujarat)",
             "working_hours": "09:00 AM - 05:00 PM (Mon-Sat)",
-            "dashboard_language": "gu"
+            "dashboard_language": "en"
         }
         for k, v in default_settings.items():
             cursor.execute("INSERT OR IGNORE INTO doctor_settings (key, value) VALUES (?, ?)", (k, v))
@@ -108,4 +113,4 @@ def update_settings(settings_dict: Dict[str, str]):
 
 if __name__ == "__main__":
     init_db()
-    print("Database ready with language support:", get_settings())
+    print("Database initialized at DB_PATH:", DB_PATH)
