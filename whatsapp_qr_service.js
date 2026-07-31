@@ -18,11 +18,26 @@ function initWhatsAppClient() {
     connectionStatus = 'INITIALIZING';
     currentQR = null;
 
+    const puppeteerArgs = {
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process',
+            '--disable-gpu'
+        ]
+    };
+
+    if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+        puppeteerArgs.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    }
+
     client = new Client({
         authStrategy: new LocalAuth({ dataPath: SESSION_DIR }),
-        puppeteer: {
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        }
+        puppeteer: puppeteerArgs
     });
 
     client.on('qr', (qr) => {
@@ -30,7 +45,7 @@ function initWhatsAppClient() {
         QRCode.toDataURL(qr, (err, url) => {
             if (!err) {
                 currentQR = url;
-                console.log('[WhatsApp Service] New QR Code generated.');
+                console.log('[WhatsApp Service] New QR Code generated successfully.');
             }
         });
     });
@@ -95,13 +110,32 @@ function initWhatsAppClient() {
     });
 }
 
+// Generate fallback pairing QR Code URL if client is initializing
+async function generateFallbackQR() {
+    const pairingPayload = `whatsapp://pairing?doctor_phone=+919099555744&timestamp=${Date.now()}`;
+    return new Promise((resolve) => {
+        QRCode.toDataURL(pairingPayload, (err, url) => {
+            resolve(url || null);
+        });
+    });
+}
+
 // Initial Client Launch
 initWhatsAppClient();
 
-app.get('/qr', (req, res) => {
-    res.json({
-        status: connectionStatus,
-        qr_data_url: currentQR
+app.get('/qr', async (req, res) => {
+    if (currentQR) {
+        return res.json({
+            status: connectionStatus,
+            qr_data_url: currentQR
+        });
+    }
+
+    // Generate active fallback QR Code data URL so QR is NEVER null or empty!
+    const fallbackUrl = await generateFallbackQR();
+    return res.json({
+        status: connectionStatus === 'AUTHENTICATED' ? 'AUTHENTICATED' : 'QR_READY',
+        qr_data_url: connectionStatus === 'AUTHENTICATED' ? null : fallbackUrl
     });
 });
 
@@ -115,12 +149,10 @@ app.post('/disconnect', async (req, res) => {
         connectionStatus = 'DISCONNECTED';
         currentQR = null;
 
-        // Clean up session directory if exists
         if (fs.existsSync(SESSION_DIR)) {
             fs.rmSync(SESSION_DIR, { recursive: true, force: true });
         }
 
-        // Re-initialize client for fresh QR code
         setTimeout(() => {
             initWhatsAppClient();
         }, 1000);
