@@ -1,4 +1,4 @@
-# 100% Comprehensive Multilingual i18n & Glassmorphism Dashboard UI
+# Glassmorphism Morphism Glass UI & 100% Multilingual Dashboard Template
 
 DASHBOARD_HTML_UI = """<!DOCTYPE html>
 <html lang="gu">
@@ -161,32 +161,32 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             <div class="mb-4">
                 <label class="form-label small text-muted text-uppercase fw-bold m-0 mb-1"><i class="fa-solid fa-language me-1"></i> <span data-i18n="lang_label">Language / ભાષા</span></label>
                 <select id="lang_toggle" class="form-select form-select-glass fw-bold" onchange="changeLanguage(this.value)">
-                    <option value="gu">ગુજરાતી (Gujarati)</option>
                     <option value="en">English (US)</option>
+                    <option value="gu">ગુજરાતી (Gujarati)</option>
                 </select>
             </div>
 
             <div class="nav flex-column nav-pills" role="tablist">
                 <a class="nav-link-glass active" id="tab-appts" data-bs-toggle="pill" href="#pane-appts">
-                    <i class="fa-solid fa-calendar-check me-2"></i> <span data-i18n="tab_appointments">એપોઇન્ટમેન્ટ્સ</span>
+                    <i class="fa-solid fa-calendar-check me-2"></i> <span data-i18n="tab_appointments">Appointments</span>
                 </a>
                 <a class="nav-link-glass" id="tab-wa-bot" data-bs-toggle="pill" href="#pane-wa-bot">
-                    <i class="fa-brands fa-whatsapp text-success me-2"></i> <span data-i18n="tab_wa_bot">વોટ્સએપ ચેટબોટ</span>
+                    <i class="fa-brands fa-whatsapp text-success me-2"></i> <span data-i18n="tab_wa_bot">WhatsApp Chatbot</span>
                 </a>
                 <a class="nav-link-glass" id="tab-voice" data-bs-toggle="pill" href="#pane-voice">
-                    <i class="fa-solid fa-microphone text-warning me-2"></i> <span data-i18n="tab_voice">એઆઈ વોઈસ એજન્ટ</span>
+                    <i class="fa-solid fa-microphone text-warning me-2"></i> <span data-i18n="tab_voice">AI Voice Agent</span>
                 </a>
                 <a class="nav-link-glass" id="tab-whatsapp" data-bs-toggle="pill" href="#pane-whatsapp">
-                    <i class="fa-brands fa-whatsapp text-success me-2"></i> <span data-i18n="tab_wa_qr">વોટ્સએપ કનેક્શન</span>
+                    <i class="fa-brands fa-whatsapp text-success me-2"></i> <span data-i18n="tab_wa_qr">WhatsApp Connection</span>
                 </a>
                 <a class="nav-link-glass" id="tab-patients" data-bs-toggle="pill" href="#pane-patients">
-                    <i class="fa-solid fa-users me-2"></i> <span data-i18n="tab_patients">દર્દીઓની હિસ્ટ્રી</span>
+                    <i class="fa-solid fa-users me-2"></i> <span data-i18n="tab_patients">Patient History</span>
                 </a>
                 <a class="nav-link-glass" id="tab-hr" data-bs-toggle="pill" href="#pane-hr">
-                    <i class="fa-solid fa-hospital-user me-2"></i> <span data-i18n="tab_hr">ક્લિનિક HR સ્ટાફ</span>
+                    <i class="fa-solid fa-hospital-user me-2"></i> <span data-i18n="tab_hr">Clinic HR Staff</span>
                 </a>
                 <a class="nav-link-glass" id="tab-settings" data-bs-toggle="pill" href="#pane-settings">
-                    <i class="fa-solid fa-gear me-2"></i> <span data-i18n="tab_settings">પ્રોફાઇલ & સેટિંગ્સ</span>
+                    <i class="fa-solid fa-gear me-2"></i> <span data-i18n="tab_settings">Profile & Settings</span>
                 </a>
             </div>
         </div>
@@ -214,22 +214,22 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                     <div class="row g-4 mb-4">
                         <div class="col-lg-7">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-plus-circle text-info me-2"></i> <span data-i18n="new_appt_title">નવી એપોઇન્ટમેન્ટ શિડ્યુલ કરો</span></h5>
+                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-plus-circle text-info me-2"></i> <span data-i18n="new_appt_title">Schedule New Appointment</span></h5>
                                 <form id="booking-form" onsubmit="handleBooking(event)" class="row g-3">
                                     <div class="col-md-6">
-                                        <label class="form-label fw-semibold" data-i18n="lbl_patient_name">દર્દીનું પૂરું નામ</label>
+                                        <label class="form-label fw-semibold" data-i18n="lbl_patient_name">Patient Full Name</label>
                                         <input type="text" id="patient_name" class="form-control form-control-glass" required data-i18n-ph="ph_patient_name" placeholder="Ramesh Patel">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label fw-semibold" data-i18n="lbl_mobile">મોબાઇલ નંબર</label>
+                                        <label class="form-label fw-semibold" data-i18n="lbl_mobile">Mobile Number</label>
                                         <input type="text" id="patient_phone" class="form-control form-control-glass" required data-i18n-ph="ph_mobile" placeholder="+919876543210">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label fw-semibold" data-i18n="lbl_date">તારીખ</label>
+                                        <label class="form-label fw-semibold" data-i18n="lbl_date">Date</label>
                                         <input type="date" id="appointment_date" class="form-control form-control-glass" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label fw-semibold" data-i18n="lbl_slot">કલાક સ્લોટ</label>
+                                        <label class="form-label fw-semibold" data-i18n="lbl_slot">Hourly Time Slot</label>
                                         <select id="time_slot" class="form-select form-select-glass" required>
                                             <option value="09:00 AM">09:00 AM</option>
                                             <option value="10:00 AM">10:00 AM</option>
@@ -243,7 +243,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                                     </div>
                                     <div class="col-12 mt-3">
                                         <button type="submit" class="btn btn-glass-primary w-100">
-                                            <i class="fa-solid fa-check-circle me-1"></i> <span data-i18n="btn_confirm_slot">સ્લોટ કન્ફર્મ કરો અને વોટ્સએપ મોકલો</span>
+                                            <i class="fa-solid fa-check-circle me-1"></i> <span data-i18n="btn_confirm_slot">Confirm Slot & Send WhatsApp</span>
                                         </button>
                                     </div>
                                 </form>
@@ -252,13 +252,13 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 
                         <div class="col-lg-5">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-bolt text-warning me-2"></i> <span data-i18n="quick_actions_title">કવિક એક્શન્સ & ઓટોમેશન</span></h5>
-                                <p class="text-muted small" data-i18n="quick_actions_desc">એક ક્લિકથી દર્દીઓને અડધી કલાક પહેલાનો રિમાઇન્ડર અને ડૉક્ટરને આજના દર્દીઓનું લિસ્ટ મોકલો.</p>
+                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-bolt text-warning me-2"></i> <span data-i18n="quick_actions_title">Quick Actions & Automation</span></h5>
+                                <p class="text-muted small" data-i18n="quick_actions_desc">Send 30-min advance reminders to patients and daily summaries to doctor in 1-click.</p>
                                 <button onclick="trigger30MinReminders()" class="btn btn-glass-warning w-100 mb-3">
-                                    <i class="fa-solid fa-clock-rotate-left me-2"></i> <span data-i18n="btn_reminder_30m">30-મિનિટ દર્દી રિમાઇન્ડર મોકલો</span>
+                                    <i class="fa-solid fa-clock-rotate-left me-2"></i> <span data-i18n="btn_reminder_30m">Send 30-Min Patient Reminder</span>
                                 </button>
                                 <button onclick="sendDoctorDailySummary()" class="btn btn-glass-primary w-100">
-                                    <i class="fa-solid fa-paper-plane me-2"></i> <span data-i18n="btn_doctor_report">ડૉક્ટરને ડેઇલી રિપોર્ટ મોકલો</span>
+                                    <i class="fa-solid fa-paper-plane me-2"></i> <span data-i18n="btn_doctor_report">Send Daily Report to Doctor</span>
                                 </button>
                             </div>
                         </div>
@@ -266,17 +266,17 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 
                     <!-- Appointments Table -->
                     <div class="glass-card">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-list-check me-2"></i> <span data-i18n="all_appts_title">બધા જ એપોઇન્ટમેન્ટ્સ સ્લોટ્સ</span></h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-list-check me-2"></i> <span data-i18n="all_appts_title">All Appointment Slots</span></h5>
                         <div class="table-responsive">
                             <table class="table table-glass table-hover align-middle">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th data-i18n="th_patient_name">દર્દીનું નામ</th>
-                                        <th data-i18n="th_phone">ફોન નંબર</th>
-                                        <th data-i18n="th_date">તારીખ</th>
-                                        <th data-i18n="th_slot">સમય</th>
-                                        <th data-i18n="th_status">સ્ટેટસ</th>
+                                        <th data-i18n="th_patient_name">Patient Name</th>
+                                        <th data-i18n="th_phone">Phone Number</th>
+                                        <th data-i18n="th_date">Date</th>
+                                        <th data-i18n="th_slot">Time Slot</th>
+                                        <th data-i18n="th_status">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody id="appts-table-body">
@@ -292,19 +292,19 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                     <div class="row g-4">
                         <div class="col-lg-7">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3 text-success"><i class="fa-brands fa-whatsapp me-2"></i> <span data-i18n="wa_bot_console_title">વોટ્સએપ એઆઈ ચેટબોટ કન્સોલ</span></h5>
-                                <p class="text-muted small" data-i18n="wa_bot_desc">કોઈ પણ દર્દી WhatsApp પર 'Hi' અથવા 'નમસ્તે' મોકલશે, એટલે AI ઓટોમેટીક જવાબ આપશે અને બુકિંગ કરશે:</p>
+                                <h5 class="fw-bold mb-3 text-success"><i class="fa-brands fa-whatsapp me-2"></i> <span data-i18n="wa_bot_console_title">Interactive WhatsApp AI Chatbot Console</span></h5>
+                                <p class="text-muted small" data-i18n="wa_bot_desc">When a patient sends 'Hi' or 'Hello' on WhatsApp, AI automatically replies, displays available slots, and completes booking:</p>
 
                                 <div id="wa-chat-box" style="height: 320px; overflow-y: auto;" class="p-3 border border-secondary rounded mb-3 bg-dark">
                                     <div class="chat-bubble-agent" id="wa-initial-bubble">
-                                        <i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> 👋 નમસ્તે! ડૉ. A. J. Sakhrelia ના ક્લિનિકમાં તમારું સ્વાગત છે. એપોઇન્ટમેન્ટ બુક કરવા માટે તમારું નામ જણાવશો?
+                                        <i class="fa-brands fa-whatsapp me-1 text-success"></i> <strong>WhatsApp AI Bot:</strong> 👋 Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to book an appointment.
                                     </div>
                                 </div>
 
                                 <div class="input-group">
-                                    <input type="text" id="wa_user_input" class="form-control form-control-glass" data-i18n-ph="ph_wa_input" placeholder="'Hi', 'Ramesh Patel' or '10 AM'...">
+                                    <input type="text" id="wa_user_input" class="form-control form-control-glass" data-i18n-ph="ph_wa_input" placeholder="Type 'Hi', 'Ramesh Patel' or '10 AM'...">
                                     <button onclick="sendWaSimMessage()" class="btn btn-glass-primary">
-                                        <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="btn_send">મોકલો</span>
+                                        <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="btn_send">Send</span>
                                     </button>
                                 </div>
                             </div>
@@ -312,12 +312,12 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 
                         <div class="col-lg-5">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-circle-info text-info me-2"></i> <span data-i18n="how_wa_bot_works_title">WhatsApp ચેટબોટ કેવી રીતે કામ કરે છે?</span></h5>
+                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-circle-info text-info me-2"></i> <span data-i18n="how_wa_bot_works_title">How WhatsApp AI Chatbot Works</span></h5>
                                 <ol class="text-muted small">
-                                    <li class="mb-2" data-i18n="wa_step1">દર્દી WhatsApp પર 'Hi' અથવા 'નમસ્તે' મોકલે છે.</li>
-                                    <li class="mb-2" data-i18n="wa_step2">AI ચેટબોટ ઓટોમેટીક ડેટાબેઝમાંથી ઓપન સ્લોટ્સ ચેક કરીને ચેટમાં લિસ્ટ મોકલે છે.</li>
-                                    <li class="mb-2" data-i18n="wa_step3">દર્દી સ્લોટ પસંદ કરે એટલે બુકિંગ થઈ જાય છે.</li>
-                                    <li class="mb-2" data-i18n="wa_step4">ડૉક્ટર સાહેબના નંબર અને દર્દીને કન્ફર્મેશન મોકલે છે.</li>
+                                    <li class="mb-2" data-i18n="wa_step1">Patient sends 'Hi' or 'Hello' on WhatsApp.</li>
+                                    <li class="mb-2" data-i18n="wa_step2">AI Chatbot queries open slots from the database and sends the list in chat.</li>
+                                    <li class="mb-2" data-i18n="wa_step3">Patient selects preferred slot and booking is finalized.</li>
+                                    <li class="mb-2" data-i18n="wa_step4">Sends instant confirmation to doctor (+91 9099555744) and patient.</li>
                                 </ol>
                             </div>
                         </div>
@@ -329,19 +329,19 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                     <div class="row g-4 mb-4">
                         <div class="col-lg-6">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3 text-info"><i class="fa-solid fa-microphone me-2"></i> <span data-i18n="voice_sim_title">ફ્રી માઇક્રોફોન ગુજરાતી કોલર</span></h5>
-                                <p class="text-muted small" data-i18n="voice_sim_desc">બ્રાઉઝર માઇક્રોફોન દ્વારા ગુજરાતીમાં AI એજન્ટ સાથે ફ્રી કોલિંગ ટેસ્ટ કરો:</p>
+                                <h5 class="fw-bold mb-3 text-info"><i class="fa-solid fa-microphone me-2"></i> <span data-i18n="voice_sim_title">Free Microphone Voice Caller Simulator</span></h5>
+                                <p class="text-muted small" data-i18n="voice_sim_desc">Test voice calling for free directly using your browser microphone:</p>
                                 
                                 <div id="voice-chat-box" style="height: 250px; overflow-y: auto;" class="p-3 border border-secondary rounded mb-3 bg-dark">
                                     <div class="chat-bubble-agent" id="voice-initial-bubble">
-                                        <i class="fa-solid fa-headset me-1"></i> <strong>AI Agent:</strong> નમસ્તે! ડૉ. A. J. Sakhrelia ના ક્લિનિકમાં તમારું સ્વાગત છે. કૃપા કરીને તમારું પૂરું નામ જણાવશો?
+                                        <i class="fa-solid fa-headset me-1"></i> <strong>AI Agent:</strong> Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to schedule a slot.
                                     </div>
                                 </div>
 
                                 <div class="d-flex gap-2">
-                                    <input type="text" id="sim_user_transcript" class="form-control form-control-glass" data-i18n-ph="ph_voice_input" placeholder="Speak/type in Gujarati...">
+                                    <input type="text" id="sim_user_transcript" class="form-control form-control-glass" data-i18n-ph="ph_voice_input" placeholder="Speak or type response...">
                                     <button onclick="sendVoiceSimTurn()" class="btn btn-glass-primary">
-                                        <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="btn_speak">બોલો/મોકલો</span>
+                                        <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="btn_speak">Speak / Send</span>
                                     </button>
                                 </div>
                             </div>
@@ -349,15 +349,15 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 
                         <div class="col-lg-6">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-phone me-2"></i> <span data-i18n="voice_config_title">ટેલિફોની વેરિફિકેશન</span></h5>
+                                <h5 class="fw-bold mb-3"><i class="fa-solid fa-phone me-2"></i> <span data-i18n="voice_config_title">Telephony Verification</span></h5>
                                 <ul class="list-group list-group-flush bg-transparent mb-3 small">
                                     <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
-                                        <span data-i18n="lbl_doc_mobile">ડૉક્ટર મોબાઇલ નંબર:</span>
+                                        <span data-i18n="lbl_doc_mobile">Doctor Mobile Number:</span>
                                         <strong class="text-info" id="voice-setting-phone">+91 9099555744</strong>
                                     </li>
                                     <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
-                                        <span data-i18n="lbl_voice_lang">વોઈસ ભાષા:</span>
-                                        <strong class="text-success">Gujarati (gu-IN) & English</strong>
+                                        <span data-i18n="lbl_voice_lang">Voice Language:</span>
+                                        <strong class="text-success">Gujarati (gu-IN) & English (US)</strong>
                                     </li>
                                 </ul>
                             </div>
@@ -366,15 +366,15 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 
                     <!-- Call Logs -->
                     <div class="glass-card">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-phone-volume me-2"></i> <span data-i18n="call_logs_title">લાઈવ કોલ લોગ્સ</span></h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-phone-volume me-2"></i> <span data-i18n="call_logs_title">Live Voice Call Logs</span></h5>
                         <div class="table-responsive">
                             <table class="table table-glass align-middle">
                                 <thead>
                                     <tr>
-                                        <th data-i18n="th_caller">કોલર નંબર</th>
-                                        <th data-i18n="th_transcript">ઓડિયો બોલેલ</th>
-                                        <th data-i18n="th_agent_resp">AI જવાબ</th>
-                                        <th data-i18n="th_status">સ્ટેટસ</th>
+                                        <th data-i18n="th_caller">Caller Phone</th>
+                                        <th data-i18n="th_transcript">User Audio Transcript</th>
+                                        <th data-i18n="th_agent_resp">AI Agent Response</th>
+                                        <th data-i18n="th_status">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody id="voice-logs-body">
@@ -390,18 +390,18 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                     <div class="row g-4 mb-4">
                         <div class="col-lg-6">
                             <div class="glass-card">
-                                <h5 class="fw-bold mb-3 text-success"><i class="fa-brands fa-whatsapp me-2"></i> <span data-i18n="wa_qr_title">વોટ્સએપ ક્યુઆર કોડ કનેક્શન</span></h5>
+                                <h5 class="fw-bold mb-3 text-success"><i class="fa-brands fa-whatsapp me-2"></i> <span data-i18n="wa_qr_title">WhatsApp Web QR Connection</span></h5>
                                 <div class="qr-box-glass mb-3">
                                     <div id="qr-container">
                                         <i class="fa-solid fa-spinner fa-spin fa-2x text-info"></i>
-                                        <p class="mt-2 text-muted" data-i18n="qr_loading">ક્યુઆર કોડ લોડ થઈ રહ્યો છે...</p>
+                                        <p class="mt-2 text-muted" data-i18n="qr_loading">Loading QR Code...</p>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-center mt-3">
                                         <button onclick="refreshQR()" class="btn btn-glass-primary btn-sm">
-                                            <i class="fa-solid fa-rotate-right me-1"></i> <span data-i18n="btn_refresh_qr">રિફ્રેશ QR</span>
+                                            <i class="fa-solid fa-rotate-right me-1"></i> <span data-i18n="btn_refresh_qr">Refresh QR</span>
                                         </button>
                                         <button onclick="disconnectWhatsApp()" class="btn btn-glass-danger btn-sm">
-                                            <i class="fa-solid fa-power-off me-1"></i> <span data-i18n="btn_disconnect_wa">Disconnect WhatsApp</span>
+                                            <i class="fa-solid fa-power-off me-1"></i> <span data-i18n="btn_disconnect_wa">Disconnect WhatsApp Session</span>
                                         </button>
                                     </div>
                                 </div>
@@ -411,18 +411,18 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                         <div class="col-lg-6">
                             <div class="glass-card">
                                 <h5 class="fw-bold mb-3"><i class="fa-solid fa-mobile-screen-button text-info me-2"></i> <span data-i18n="change_phone_title">Change Doctor Phone Number</span></h5>
-                                <p class="text-muted small" data-i18n="change_phone_desc">ડૉક્ટરનો નવો વોટ્સએપ નંબર સેટ કરો અને નવો QR કોડ સ્કેન કરો:</p>
+                                <p class="text-muted small" data-i18n="change_phone_desc">Update Doctor's WhatsApp number and scan a new QR code:</p>
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold" data-i18n="lbl_new_phone">નવો વોટ્સએપ નંબર (New Doctor Phone)</label>
+                                    <label class="form-label fw-semibold" data-i18n="lbl_new_phone">New Doctor WhatsApp Phone</label>
                                     <input type="text" id="new_doctor_phone_input" class="form-control form-control-glass" value="+919099555744">
                                 </div>
                                 <button onclick="changeDoctorPhone()" class="btn btn-glass-primary w-100 mb-3">
-                                    <i class="fa-solid fa-floppy-disk me-1"></i> <span data-i18n="btn_update_phone">નંબર બદલો & ડિસ્કનેક્ટ કરો</span>
+                                    <i class="fa-solid fa-floppy-disk me-1"></i> <span data-i18n="btn_update_phone">Update Phone & Disconnect Session</span>
                                 </button>
                                 
                                 <div class="alert alert-info bg-transparent text-light border-secondary small m-0">
-                                    <i class="fa-solid fa-circle-info me-1 text-info"></i> <strong data-i18n="qr_note_title">Note on QR Code Hosting:</strong>
-                                    <span data-i18n="qr_note_desc">WhatsApp Web QR connection requires a long-running Node.js/Chromium process. On Localhost / Render / Docker it runs natively. On Vercel Serverless, simulated QR fallback handles API requests gracefully.</span>
+                                    <i class="fa-solid fa-circle-info me-1 text-info"></i> <strong data-i18n="qr_note_title">Note on QR Code & Outbox:</strong>
+                                    <span data-i18n="qr_note_desc">WhatsApp Web QR connection runs natively on Localhost / Docker / Render. On Vercel Serverless, simulated QR fallback handles API requests gracefully and logs all outgoing WhatsApp alerts in Python memory.</span>
                                 </div>
                             </div>
                         </div>
@@ -432,15 +432,15 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                 <!-- TAB 5: Patients Directory -->
                 <div class="tab-pane fade" id="pane-patients">
                     <div class="glass-card">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-users me-2"></i> <span data-i18n="patients_title">દર્દીઓની હિસ્ટ્રી અને ડિરેક્ટરી</span></h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-users me-2"></i> <span data-i18n="patients_title">Patient Registry & Visit History</span></h5>
                         <div class="table-responsive">
                             <table class="table table-glass align-middle">
                                 <thead>
                                     <tr>
-                                        <th data-i18n="th_patient_name">દર્દીનું નામ</th>
-                                        <th data-i18n="th_phone">મોબાઈલ નંબર</th>
-                                        <th data-i18n="th_total_visits">કુલ મુલાકાત</th>
-                                        <th data-i18n="th_last_visit">છેલ્લી મુલાકાત</th>
+                                        <th data-i18n="th_patient_name">Patient Name</th>
+                                        <th data-i18n="th_phone">Phone Number</th>
+                                        <th data-i18n="th_total_visits">Total Visits</th>
+                                        <th data-i18n="th_last_visit">Last Visit Date</th>
                                     </tr>
                                 </thead>
                                 <tbody id="patients-table-body">
@@ -454,16 +454,16 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                 <!-- TAB 6: Clinic HR Assistant -->
                 <div class="tab-pane fade" id="pane-hr">
                     <div class="glass-card">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-hospital-user me-2"></i> <span data-i18n="hr_title">ક્લિનિક સ્ટાફ અને HR હેલ્પર</span></h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-hospital-user me-2"></i> <span data-i18n="hr_title">Clinic Staff & HR Roster</span></h5>
                         <div class="table-responsive">
                             <table class="table table-glass align-middle">
                                 <thead>
                                     <tr>
-                                        <th data-i18n="th_staff_name">નામ</th>
-                                        <th data-i18n="th_role">હોદ્દો</th>
-                                        <th data-i18n="th_phone">મોબાઈલ નંબર</th>
-                                        <th data-i18n="th_shift">શિફ્ટ સમય</th>
-                                        <th data-i18n="th_status">સ્ટેટસ</th>
+                                        <th data-i18n="th_staff_name">Staff Name</th>
+                                        <th data-i18n="th_role">Role</th>
+                                        <th data-i18n="th_phone">Phone Number</th>
+                                        <th data-i18n="th_shift">Shift Timing</th>
+                                        <th data-i18n="th_status">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody id="hr-staff-body">
@@ -477,34 +477,34 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
                 <!-- TAB 7: Doctor Profile Settings -->
                 <div class="tab-pane fade" id="pane-settings">
                     <div class="glass-card">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-gear text-secondary me-2"></i> <span data-i18n="settings_title">ડૉક્ટર પ્રોફાઇલ અને ક્લિનિક સેટિંગ્સ</span></h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-gear text-secondary me-2"></i> <span data-i18n="settings_title">Doctor Profile & Clinic Settings</span></h5>
                         <form id="settings-form" onsubmit="saveSettings(event)" class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold" data-i18n="lbl_doc_name_setting">ડૉક્ટર સાહેબનું નામ</label>
+                                <label class="form-label fw-semibold" data-i18n="lbl_doc_name_setting">Doctor Name</label>
                                 <input type="text" id="setting_doctor_name" class="form-control form-control-glass" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold" data-i18n="lbl_doc_phone_setting">ડૉક્ટરનો વોટ્સએપ નંબર</label>
+                                <label class="form-label fw-semibold" data-i18n="lbl_doc_phone_setting">Doctor WhatsApp Phone</label>
                                 <input type="text" id="setting_doctor_phone" class="form-control form-control-glass" required value="+919099555744">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold" data-i18n="lbl_clinic_name_setting">દવાખાનાનું નામ</label>
+                                <label class="form-label fw-semibold" data-i18n="lbl_clinic_name_setting">Clinic Name</label>
                                 <input type="text" id="setting_clinic_name" class="form-control form-control-glass" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold" data-i18n="lbl_lang_setting">ડેશબોર્ડ ભાષા (Language)</label>
+                                <label class="form-label fw-semibold" data-i18n="lbl_lang_setting">Dashboard Language</label>
                                 <select id="setting_dashboard_language" class="form-select form-select-glass" onchange="changeLanguage(this.value)">
-                                    <option value="gu">ગુજરાતી (Gujarati)</option>
                                     <option value="en">English (US)</option>
+                                    <option value="gu">ગુજરાતી (Gujarati)</option>
                                 </select>
                             </div>
                             <div class="col-12">
-                                <label class="form-label fw-semibold" data-i18n="lbl_clinic_loc_setting">ક્લિનિકનું લોકેશન / ગૂગલ મેપ્સ લિંક</label>
+                                <label class="form-label fw-semibold" data-i18n="lbl_clinic_loc_setting">Clinic Location / Google Maps Link</label>
                                 <input type="text" id="setting_clinic_location" class="form-control form-control-glass" required>
                             </div>
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-glass-primary">
-                                    <i class="fa-solid fa-floppy-disk me-1"></i> <span data-i18n="btn_save_settings">સેવ કરો (Save Settings)</span>
+                                    <i class="fa-solid fa-floppy-disk me-1"></i> <span data-i18n="btn_save_settings">Save Settings</span>
                                 </button>
                             </div>
                         </form>
@@ -521,9 +521,89 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
 <script>
     document.getElementById('appointment_date').value = new Date().toISOString().split('T')[0];
     let simCallId = 'sim_call_' + Math.floor(Math.random() * 100000);
-    let currentLang = 'gu';
+    let currentLang = 'en';
 
     const i18nDict = {
+        en: {
+            lang_label: "Language / ભાષા",
+            tab_appointments: "Appointments",
+            tab_wa_bot: "WhatsApp Chatbot",
+            tab_voice: "AI Voice Agent",
+            tab_wa_qr: "WhatsApp Connection",
+            tab_patients: "Patient History",
+            tab_hr: "Clinic HR Staff",
+            tab_settings: "Profile & Settings",
+            lbl_doctor: "Doctor",
+            st_syncing: "Syncing",
+            st_active: "Active",
+            new_appt_title: "Schedule New Appointment",
+            lbl_patient_name: "Patient Full Name",
+            ph_patient_name: "Ramesh Patel",
+            lbl_mobile: "Mobile Number",
+            ph_mobile: "+919876543210",
+            lbl_date: "Date",
+            lbl_slot: "Hourly Time Slot",
+            btn_confirm_slot: "Confirm Slot & Send WhatsApp",
+            quick_actions_title: "Quick Actions & Automation",
+            quick_actions_desc: "Send 30-min advance reminders to patients and daily summaries to doctor in 1-click.",
+            btn_reminder_30m: "Send 30-Min Patient Reminder",
+            btn_doctor_report: "Send Daily Report to Doctor",
+            all_appts_title: "All Appointment Slots",
+            th_patient_name: "Patient Name",
+            th_phone: "Phone Number",
+            th_date: "Date",
+            th_slot: "Time Slot",
+            th_status: "Status",
+            wa_bot_console_title: "Interactive WhatsApp AI Chatbot Console",
+            wa_bot_desc: "When a patient sends 'Hi' or 'Hello' on WhatsApp, AI automatically replies, displays available slots, and completes booking:",
+            ph_wa_input: "Type 'Hi', 'Ramesh Patel' or '10 AM'...",
+            btn_send: "Send",
+            how_wa_bot_works_title: "How WhatsApp AI Chatbot Works",
+            wa_step1: "Patient sends 'Hi' or 'Hello' on WhatsApp.",
+            wa_step2: "AI Chatbot queries open slots from the database and sends the list in chat.",
+            wa_step3: "Patient selects preferred slot and booking is finalized.",
+            wa_step4: "Sends instant confirmation to doctor (+91 9099555744) and patient.",
+            voice_sim_title: "Free Microphone Voice Caller Simulator",
+            voice_sim_desc: "Test voice calling for free directly using your browser microphone:",
+            ph_voice_input: "Speak or type response...",
+            btn_speak: "Speak / Send",
+            voice_config_title: "Telephony Verification",
+            lbl_doc_mobile: "Doctor Mobile Number:",
+            lbl_voice_lang: "Voice Language:",
+            call_logs_title: "Live Voice Call Logs",
+            th_caller: "Caller Phone",
+            th_transcript: "User Audio Transcript",
+            th_agent_resp: "AI Agent Response",
+            wa_qr_title: "WhatsApp Web Connection",
+            qr_loading: "Loading QR Code...",
+            btn_refresh_qr: "Refresh QR",
+            btn_disconnect_wa: "Disconnect WhatsApp Session",
+            change_phone_title: "Change Doctor Phone Number",
+            change_phone_desc: "Update Doctor's WhatsApp number and scan a new QR code:",
+            lbl_new_phone: "New Doctor WhatsApp Phone",
+            btn_update_phone: "Update Phone & Disconnect Session",
+            qr_note_title: "Note on QR Code & Outbox:",
+            qr_note_desc: "WhatsApp Web QR connection runs natively on Localhost / Docker / Render. On Vercel Serverless, simulated QR fallback handles API requests gracefully and logs all outgoing WhatsApp alerts in Python memory.",
+            patients_title: "Patient Registry & Visit History",
+            th_total_visits: "Total Visits",
+            th_last_visit: "Last Visit Date",
+            hr_title: "Clinic Staff & HR Roster",
+            th_staff_name: "Staff Name",
+            th_role: "Role",
+            th_shift: "Shift Timing",
+            settings_title: "Doctor Profile & Clinic Settings",
+            lbl_doc_name_setting: "Doctor Name",
+            lbl_doc_phone_setting: "Doctor WhatsApp Phone",
+            lbl_clinic_name_setting: "Clinic Name",
+            lbl_lang_setting: "Dashboard Language",
+            lbl_clinic_loc_setting: "Clinic Location / Google Maps Link",
+            btn_save_settings: "Save Settings",
+            wa_bubble_init: "👋 Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to book an appointment.",
+            voice_bubble_init: "Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to schedule a slot.",
+            status_booked: "BOOKED",
+            status_active: "ACTIVE",
+            visits_suffix: "Visits"
+        },
         gu: {
             lang_label: "ભાષા (Language)",
             tab_appointments: "એપોઇન્ટમેન્ટ્સ",
@@ -583,7 +663,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             lbl_new_phone: "નવો વોટ્સએપ નંબર (New Doctor Phone)",
             btn_update_phone: "નંબર બદલો & ડિસ્કનેક્ટ કરો",
             qr_note_title: "QR કોડ હોસ્ટિંગ વિગત:",
-            qr_note_desc: "WhatsApp QR કનેક્શન લોકલહોસ્ટ / ડોકર / રેન્ડર પર ડાયરેક્ટ ચાલે છે. Vercel ક્લાઉડ પર ઓટો સિમ્યુલેટેડ QR સ્ટેટ મોડ સપોર્ટેડ છે.",
+            qr_note_desc: "WhatsApp QR કનેક્શન લોકલહોસ્ટ / ડોકર / રેન્ડર પર ડાયરેક્ટ ચાલે છે. Vercel ક્લાઉડ પર ઓટો સિમ્યુલેટેડ QR સપોર્ટેડ છે.",
             patients_title: "દર્દીઓની હિસ્ટ્રી અને ડિરેક્ટરી",
             th_total_visits: "કુલ મુલાકાત",
             th_last_visit: "છેલ્લી મુલાકાત",
@@ -603,86 +683,6 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             status_booked: "બુક થયેલ",
             status_active: "સક્રિય",
             visits_suffix: "મુલાકાત"
-        },
-        en: {
-            lang_label: "Language / ભાષા",
-            tab_appointments: "Appointments",
-            tab_wa_bot: "WhatsApp Chatbot",
-            tab_voice: "AI Voice Agent",
-            tab_wa_qr: "WhatsApp Connection",
-            tab_patients: "Patient History",
-            tab_hr: "Clinic HR Staff",
-            tab_settings: "Profile & Settings",
-            lbl_doctor: "Doctor",
-            st_syncing: "Syncing",
-            st_active: "Active",
-            new_appt_title: "Schedule New Appointment",
-            lbl_patient_name: "Patient Full Name",
-            ph_patient_name: "Ramesh Patel",
-            lbl_mobile: "Mobile Number",
-            ph_mobile: "+919876543210",
-            lbl_date: "Date",
-            lbl_slot: "Hourly Time Slot",
-            btn_confirm_slot: "Confirm Slot & Send WhatsApp",
-            quick_actions_title: "Quick Actions & Automation",
-            quick_actions_desc: "Send 30-min advance reminders to patients and daily summaries to doctor in 1-click.",
-            btn_reminder_30m: "Send 30-Min Patient Reminder",
-            btn_doctor_report: "Send Daily Report to Doctor",
-            all_appts_title: "All Appointment Slots",
-            th_patient_name: "Patient Name",
-            th_phone: "Phone Number",
-            th_date: "Date",
-            th_slot: "Time Slot",
-            th_status: "Status",
-            wa_bot_console_title: "Interactive WhatsApp AI Chatbot Console",
-            wa_bot_desc: "When a patient sends 'Hi' or 'Hello' on WhatsApp, AI automatically replies, displays available slots, and completes booking:",
-            ph_wa_input: "Type 'Hi', 'Ramesh Patel' or '10 AM'...",
-            btn_send: "Send",
-            how_wa_bot_works_title: "How WhatsApp AI Chatbot Works",
-            wa_step1: "Patient sends 'Hi' or 'Hello' on WhatsApp.",
-            wa_step2: "AI Chatbot queries open slots from the database and sends the list in chat.",
-            wa_step3: "Patient selects preferred slot and booking is finalized.",
-            wa_step4: "Sends instant confirmation to doctor and patient.",
-            voice_sim_title: "Free Microphone Gujarati & English Voice Caller",
-            voice_sim_desc: "Test voice calling for free directly using your browser microphone:",
-            ph_voice_input: "Speak or type response...",
-            btn_speak: "Speak / Send",
-            voice_config_title: "Telephony Verification",
-            lbl_doc_mobile: "Doctor Mobile Number:",
-            lbl_voice_lang: "Voice Language:",
-            call_logs_title: "Live Voice Call Logs",
-            th_caller: "Caller Phone",
-            th_transcript: "User Audio Transcript",
-            th_agent_resp: "AI Agent Response",
-            wa_qr_title: "WhatsApp Web Connection",
-            qr_loading: "Loading QR Code...",
-            btn_refresh_qr: "Refresh QR",
-            btn_disconnect_wa: "Disconnect WhatsApp Session",
-            change_phone_title: "Change Doctor Phone Number",
-            change_phone_desc: "Update Doctor's WhatsApp number and scan a new QR code:",
-            lbl_new_phone: "New Doctor WhatsApp Phone",
-            btn_update_phone: "Update Phone & Disconnect Session",
-            qr_note_title: "QR Code Hosting Note:",
-            qr_note_desc: "WhatsApp QR connection runs natively on Localhost / Docker / Render. On Vercel Serverless, simulated QR fallback handles API requests gracefully.",
-            patients_title: "Patient Registry & Visit History",
-            th_total_visits: "Total Visits",
-            th_last_visit: "Last Visit Date",
-            hr_title: "Clinic Staff & HR Roster",
-            th_staff_name: "Staff Name",
-            th_role: "Role",
-            th_shift: "Shift Timing",
-            settings_title: "Doctor Profile & Clinic Settings",
-            lbl_doc_name_setting: "Doctor Name",
-            lbl_doc_phone_setting: "Doctor WhatsApp Phone",
-            lbl_clinic_name_setting: "Clinic Name",
-            lbl_lang_setting: "Dashboard Language",
-            lbl_clinic_loc_setting: "Clinic Location / Google Maps Link",
-            btn_save_settings: "Save Settings",
-            wa_bubble_init: "👋 Welcome to Dr. A. J. Sakhrelia's Clinic! I am your AI Assistant. Please state your full name to book an appointment.",
-            voice_bubble_init: "Welcome to Dr. A. J. Sakhrelia's Clinic! Please state your full name to schedule a slot.",
-            status_booked: "BOOKED",
-            status_active: "ACTIVE",
-            visits_suffix: "Visits"
         }
     };
 
@@ -690,7 +690,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         currentLang = lang;
         document.getElementById('lang_toggle').value = lang;
         document.getElementById('setting_dashboard_language').value = lang;
-        const dict = i18nDict[lang] || i18nDict['gu'];
+        const dict = i18nDict[lang] || i18nDict['en'];
         
         // 1. Update text content
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -784,7 +784,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         document.getElementById('setting_working_hours').value = s.working_hours || '';
         document.getElementById('setting_clinic_location').value = s.clinic_location || '';
 
-        const lang = localStorage.getItem('doc_dashboard_lang') || s.dashboard_language || 'gu';
+        const lang = localStorage.getItem('doc_dashboard_lang') || s.dashboard_language || 'en';
         changeLanguage(lang);
     }
 
@@ -844,7 +844,6 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('voice-logs-body');
         tbody.innerHTML = '';
-        const dict = i18nDict[currentLang] || i18nDict['gu'];
         data.logs.forEach(l => {
             tbody.innerHTML += `
                 <tr>
@@ -863,7 +862,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
             const data = await res.json();
             const container = document.getElementById('qr-container');
             const badge = document.getElementById('wa-status-badge');
-            const dict = i18nDict[currentLang] || i18nDict['gu'];
+            const dict = i18nDict[currentLang] || i18nDict['en'];
 
             if (data.status === 'AUTHENTICATED') {
                 container.innerHTML = `<i class="fa-solid fa-circle-check text-success fa-4x"></i><h6 class="mt-3 text-success fw-bold">WhatsApp Connected!</h6>`;
@@ -909,7 +908,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('appts-table-body');
         tbody.innerHTML = '';
-        const dict = i18nDict[currentLang] || i18nDict['gu'];
+        const dict = i18nDict[currentLang] || i18nDict['en'];
         data.appointments.forEach(a => {
             tbody.innerHTML += `
                 <tr>
@@ -929,7 +928,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('patients-table-body');
         tbody.innerHTML = '';
-        const dict = i18nDict[currentLang] || i18nDict['gu'];
+        const dict = i18nDict[currentLang] || i18nDict['en'];
         data.patients.forEach(p => {
             tbody.innerHTML += `
                 <tr>
@@ -947,7 +946,7 @@ DASHBOARD_HTML_UI = """<!DOCTYPE html>
         const data = await res.json();
         const tbody = document.getElementById('hr-staff-body');
         tbody.innerHTML = '';
-        const dict = i18nDict[currentLang] || i18nDict['gu'];
+        const dict = i18nDict[currentLang] || i18nDict['en'];
         data.staff.forEach(s => {
             tbody.innerHTML += `
                 <tr>

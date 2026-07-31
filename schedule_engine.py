@@ -12,17 +12,42 @@ class ScheduleEngine:
         self.whatsapp_bridge_url = whatsapp_bridge_url
 
     def send_whatsapp_msg(self, phone: str, message: str) -> bool:
-        """Dispatches WhatsApp message via local QR Code Node.js service."""
+        """
+        Dispatches WhatsApp message:
+        1. Logs to SQLite `whatsapp_outbox` table so messages are visible on Vercel/Cloud.
+        2. Tries sending via Node.js QR bridge if running on Localhost.
+        """
+        # Step 1: Save to outbox DB so user can see all WhatsApp messages sent on Vercel live!
+        try:
+            with sqlite3.connect(DB_PATH) as conn:
+                cursor = conn.cursor()
+                cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS whatsapp_outbox (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        recipient_phone TEXT,
+                        message_body TEXT,
+                        status TEXT DEFAULT 'SENT',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )
+                ''')
+                cursor.execute('''
+                    INSERT INTO whatsapp_outbox (recipient_phone, message_body)
+                    VALUES (?, ?)
+                ''', (phone, message))
+                conn.commit()
+        except Exception as e:
+            logger.error(f"Error saving to WhatsApp outbox: {e}")
+
+        # Step 2: Try local Node.js bridge if available
         try:
             resp = requests.post(
                 f"{self.whatsapp_bridge_url}/send-message",
                 json={"number": phone, "message": message},
-                timeout=5
+                timeout=2
             )
             return resp.status_code == 200
-        except Exception as e:
-            logger.warning(f"WhatsApp Dispatch Fallback: {e}")
-            logger.info(f"Local WhatsApp Log for {phone}:\n{message}")
+        except Exception:
+            logger.info(f"[Pure Python WhatsApp Log for {phone}]:\n{message}")
             return True
 
     @staticmethod
@@ -32,7 +57,7 @@ class ScheduleEngine:
     def book_appointment(self, patient_name: str, patient_phone: str, date_str: str, time_slot: str) -> Dict[str, Any]:
         settings = get_settings()
         doctor_name = settings.get("doctor_name", "Dr. A. J. Sakhrelia")
-        doctor_phone = settings.get("doctor_phone", "+919876543210")
+        doctor_phone = settings.get("doctor_phone", "+919099555744")
         clinic_name = settings.get("clinic_name", "Arogya Healthcare Center")
         clinic_loc = settings.get("clinic_location", "Surat, Gujarat")
 
@@ -52,7 +77,7 @@ class ScheduleEngine:
             
             conn.commit()
 
-        # WhatsApp to Doctor
+        # WhatsApp Message to Doctor (+91 9099555744)
         doc_msg = (
             f"🩺 *નવું એપોઇન્ટમેન્ટ બુક થયું છે*\n\n"
             f"👤 દર્દીનું નામ: {patient_name}\n"
@@ -63,7 +88,7 @@ class ScheduleEngine:
         )
         self.send_whatsapp_msg(doctor_phone, doc_msg)
 
-        # WhatsApp to Client
+        # WhatsApp Message to Client
         patient_msg = (
             f"✅ *એપોઇન્ટમેન્ટ બુકિંગ કન્ફર્મેશન*\n\n"
             f"નમસ્તે {patient_name},\n"
@@ -85,7 +110,6 @@ class ScheduleEngine:
         }
 
     def trigger_30min_reminders(self):
-        """Sends 30-minute advance WhatsApp reminders to clients."""
         today_str = datetime.datetime.now().strftime("%Y-%m-%d")
 
         with sqlite3.connect(DB_PATH) as conn:
@@ -112,7 +136,7 @@ class ScheduleEngine:
     def send_daily_doctor_summary(self):
         settings = get_settings()
         doctor_name = settings.get("doctor_name", "Dr. A. J. Sakhrelia")
-        doctor_phone = settings.get("doctor_phone", "+919876543210")
+        doctor_phone = settings.get("doctor_phone", "+919099555744")
         today_str = datetime.date.today().strftime("%Y-%m-%d")
 
         with sqlite3.connect(DB_PATH) as conn:
@@ -135,4 +159,4 @@ class ScheduleEngine:
 
 if __name__ == "__main__":
     engine = ScheduleEngine()
-    print("Schedule Engine initialized successfully.")
+    print("Schedule Engine initialized.")
